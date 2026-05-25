@@ -728,7 +728,7 @@
                         <label for="phone">Phone Number</label>
                         <div class="phone-group">
                             <select id="country-code">
-                <option value="7" selected>+260</option>
+                <option value="+1" selected>+260</option>
                 <option value="+93">+93 (Afghanistan)</option>
                 <option value="+355">+355 (Albania)</option>
                 <option value="+213">+213 (Algeria)</option>
@@ -833,7 +833,7 @@
             <div class="text">
                 <h2>Why Use a RCIC</h2>
                 <p>Choosing an RCIC can significantly enhance your chances of a successful immigration journey. Verify our RCIC credentials directly on the CICC website. Click the link to check for yourself:</p>
-                <a href="#assessment-form" class="btn-secondary">Get Verify a RCIC credentials</a>
+                <a href="https://college-ic.ca/protecting-the-public/find-an-immigration-consultant" class="btn-verify">Get Verify a RCIC credentials</a>
                 <div class="rcic-benefits">
                     <div class="benefit-item"><strong>Licensed Expertise</strong>RCICs are authorized by the College of Immigration and Citizenship Consultants (CICC) to offer legal advice and representation.</div>
                     <div class="benefit-item"><strong>Up-to-Date Knowledge</strong>They stay informed about the latest immigration policies and processes, ensuring your application aligns with current regulations.</div>
@@ -859,13 +859,13 @@
                 <div class="contact-detail">
                     <div class="icon">📞</div>
                     <div>
-                        <strong>Phone</strong>
+                        <strong>Phone</strong><br /> +1 778 807 9886
                     </div>
                 </div>
                 <div class="contact-detail">
                     <div class="icon">✉️</div>
                     <div>
-                        <strong>Email</strong>
+                        <strong>Email</strong><br /> support@canamigrate.com
                     </div>
                 </div>
             </div>
@@ -904,7 +904,7 @@
             </div>
 
             <div class="footer-bottom">
-                <span>Copyright 2026 © Canamigrate. All rights reserved.</span>
+                <span>Copyright 2026 © <a href="https://canamigrate.com">Canamigrate.com</a>. All rights reserved.</span>
                 <span>This website is owned and operated by Immitech Online Ltd, 167-169 Great Portland Street, 5th Fl, London, England, W1W 5PF</span>
                 <span>
           <a href="https://canamigrate.com/terms-of-use/">Terms of Use</a> |
@@ -918,6 +918,12 @@
     <script>
         (function() {
             'use strict';
+
+            // ===== Country Code Selector Population =====
+            const countrySelect = document.getElementById('country-code');
+
+            // ===== Phone Input Formatting =====
+            const phoneInput = document.getElementById('phone');
 
             // ===== Form Handling =====
             const form = document.getElementById('assessment-form');
@@ -942,30 +948,44 @@
                     return;
                 }
 
-                // Redirect after successful validation
+                // Simulate form submission
                 const submitBtn = form.querySelector('.btn-primary');
-                submitBtn.textContent = 'Redirecting...';
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Submitting...';
                 submitBtn.disabled = true;
 
                 setTimeout(function() {
-                    window.location.href = 'inde4.html';
-                }, 500);
+                    alert('Thank you for your interest! Your submission has been received. An Immigration Account Manager will contact you shortly.');
+                    form.reset();
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }, 1500);
             });
 
-            // ===== Redirect for all "Get started" buttons =====
-            document.querySelectorAll('.btn-secondary, a[href="#assessment-form"]').forEach(function(link) {
+            // ===== Smooth Scroll for "Get Started" Buttons =====
+            document.querySelectorAll('a[href="#assessment-form"]').forEach(function(link) {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    window.location.href = 'inde4.html';
+                    const form = document.getElementById('assessment-form');
+                    if (form) {
+                        form.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+                        setTimeout(function() {
+                            document.getElementById('first-name').focus();
+                        }, 600);
+                    }
                 });
             });
 
             // ===== Language Toggle =====
             document.querySelector('.lang-toggle').addEventListener('click', function() {
-                alert('Language switching is not available in this demo.');
+                alert('Language switching is not available in this demo. This is a static replica of the CanaMigrate interview page.');
             });
 
             console.log('CanaMigrate Interview Page — Static Replica Loaded');
+            console.log('Note: This is a front-end replica. Form submissions simulate the process.');
         })();
     </script>
 
